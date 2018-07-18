@@ -123,7 +123,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 skip2page(3);
                 break;
             case R.id.tv_measure:
-                showMeasureDialog();
+                //showMeasureDialog();
                 break;
         }
     }

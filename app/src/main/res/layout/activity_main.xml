@@ -9,7 +9,6 @@
         android:id="@+id/vp_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/green"
         android:layout_above="@+id/ll_group"/>
 
     <LinearLayout
@@ -17,7 +16,6 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:paddingTop="3dp"
         android:paddingBottom="1dp"
         android:orientation="horizontal">
 
@@ -27,6 +25,8 @@
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:foreground="@drawable/ripple_click_blue"
+            android:paddingTop="3dp"
             android:gravity="center">
 
             <ImageView
@@ -54,6 +54,8 @@
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:foreground="@drawable/ripple_click_gray"
+            android:paddingTop="3dp"
             android:gravity="center">
 
             <ImageView
@@ -91,6 +93,8 @@
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:foreground="@drawable/ripple_click_gray"
+            android:paddingTop="3dp"
             android:gravity="center">
 
             <ImageView
@@ -118,6 +122,8 @@
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:foreground="@drawable/ripple_click_gray"
+            android:paddingTop="3dp"
             android:gravity="center">
 
             <ImageView
@@ -143,8 +149,8 @@
 
     <TextView
         android:id="@+id/tv_measure"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"
