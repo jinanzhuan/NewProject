@@ -193,4 +193,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         }
     }
+
+    static boolean good(MainActivity context){
+        return false;
+    }
 }

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:gravity="center"
+              android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btn_dynamic_setters"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DynamicSettersActivity"/>
+
+    <Button
+        android:id="@+id/btn_custom_tile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CustomTileDimensions"/>
+
+    <Button
+        android:id="@+id/btn_calendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CalendarActivity"/>
+
+    <Button
+        android:id="@+id/btn_selection_modes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SelectionModesActivity"/>
+
+    <Button
+        android:id="@+id/btn_multiple_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MultipleSizeActivity"/>
+
+    <Button
+        android:id="@+id/btn_basic_decorated"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BasicActivityDecorated"/>
+
+    <Button
+        android:id="@+id/btn_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="TestCalendarActivity"/>
+
+</LinearLayout>

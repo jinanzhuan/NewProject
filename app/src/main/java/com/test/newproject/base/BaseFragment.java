@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
  */
 
 public abstract class BaseFragment extends Fragment {
-    private BaseActivity mContext;
+    public BaseActivity mContext;
 
     @Nullable
     @Override

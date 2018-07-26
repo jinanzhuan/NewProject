@@ -1,3 +1,34 @@
 <resources>
     <string name="app_name">NewProject</string>
+    <string name="label_normal">Fitted for screen (common use)</string>
+    <string name="label_small">Fitted for small layout parameters</string>
+    <string name="label_medium">Tile size specified</string>
+    <string name="label_thin">Tile width and height specified (thin)</string>
+    <string name="label_wide">Tile width and height specified (wide)</string>
+    <string name="today">Today is the day</string>
+
+    <string-array name="custom_weekdays">
+        <item>Su</item>
+        <item>M</item>
+        <item>Tu</item>
+        <item>W</item>
+        <item>Th</item>
+        <item>F</item>
+        <item>Sa</item>
+    </string-array>
+
+    <string-array name="custom_months">
+        <item>JAN</item>
+        <item>Feb</item>
+        <item>MARCH</item>
+        <item>April</item>
+        <item>MAY</item>
+        <item>June</item>
+        <item>JULY</item>
+        <item>Aug</item>
+        <item>SEPT</item>
+        <item>Oct</item>
+        <item>Nov</item>
+        <item>DEC</item>
+    </string-array>
 </resources>
