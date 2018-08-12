@@ -17,4 +17,10 @@
         android:layout_height="wrap_content"
         android:text="日历"/>
 
+    <Button
+        android:id="@+id/btn_wave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="双波纹效果"/>
+
 </LinearLayout>

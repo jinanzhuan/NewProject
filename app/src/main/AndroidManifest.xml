@@ -33,6 +33,7 @@
         <activity android:name=".activity.CustomTileDimensions"/>
         <activity android:name=".activity.CalendarTestActivity"/>
         <activity android:name=".activity.BasicActivityDecorated"/>
+        <activity android:name=".activity.DoubleWaveActivity"/>
     </application>
 
 </manifest>
