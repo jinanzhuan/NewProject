@@ -34,6 +34,7 @@
         <activity android:name=".activity.CalendarTestActivity"/>
         <activity android:name=".activity.BasicActivityDecorated"/>
         <activity android:name=".activity.DoubleWaveActivity"/>
+        <activity android:name=".activity.RulerActivity"/>
     </application>
 
 </manifest>

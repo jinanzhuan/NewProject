@@ -10,6 +10,7 @@ import com.test.newproject.R;
 import com.test.newproject.activity.CalendarIndexActivity;
 import com.test.newproject.activity.DoubleWaveActivity;
 import com.test.newproject.activity.ProgressActivity;
+import com.test.newproject.activity.RulerActivity;
 import com.test.newproject.base.BaseFragment;
 
 import butterknife.ButterKnife;
@@ -32,6 +33,8 @@ public class DoctorFragment extends BaseFragment implements View.OnClickListener
     Button mBtnCalendar;
     @InjectView(R.id.btn_wave)
     Button mBtnWave;
+    @InjectView(R.id.btn_ruler)
+    Button mBtnRuler;
 
     @Override
     public int getLayoutId() {
@@ -44,6 +47,7 @@ public class DoctorFragment extends BaseFragment implements View.OnClickListener
         mBtnProgress.setOnClickListener(this);
         mBtnCalendar.setOnClickListener(this);
         mBtnWave.setOnClickListener(this);
+        mBtnRuler.setOnClickListener(this);
     }
 
     @Override
@@ -57,6 +61,9 @@ public class DoctorFragment extends BaseFragment implements View.OnClickListener
                 break;
             case R.id.btn_wave://双波纹效果
                 DoubleWaveActivity.start(mContext);
+                break;
+            case R.id.btn_ruler:
+                RulerActivity.actionStart(mContext);
                 break;
         }
     }
