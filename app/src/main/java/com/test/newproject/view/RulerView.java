@@ -6,8 +6,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -38,6 +40,7 @@ public class RulerView extends View {
     private float mLineMaxHeight = 420;   //  尺子刻度分为3中不同的高度。 mLineMaxHeight表示最长的那根(也就是 10的倍数时的高度)
     private float mLineMidHeight = 30;    //  mLineMidHeight  表示中间的高度(也就是 5  15 25 等时的高度)
     private float mLineMinHeight = 17;    //  mLineMinHeight  表示最短的那个高度(也就是 1 2 3 4 等时的高度)
+    private float mMiddlePointerWidth;    // 中间标尺的宽度
 
     private float mTextMarginTop = 10;    //o
     private float mTextSize =30;         //尺子刻度下方数字 textsize
@@ -63,6 +66,7 @@ public class RulerView extends View {
     private int mLineColor = Color.GRAY;   //刻度的颜色
     private int mTextColor=Color.BLACK;    //文字的颜色
     private int mPointerColor = Color.RED;    //中间标尺的颜色
+    private int mBackgroundColor = Color.WHITE;    //背景渐变色颜色
 
 
     public RulerView(Context context) {
@@ -91,7 +95,6 @@ public class RulerView extends View {
         this.mLineMinHeight = myfloat(40.0F);
         this.mTextHeight = myfloat(40.0F);
 
-
         final TypedArray typedArray = context.obtainStyledAttributes(attrs,
                 R.styleable.RulerView);
 
@@ -102,6 +105,7 @@ public class RulerView extends View {
         mLineMaxHeight = typedArray.getDimension(R.styleable.RulerView_lineMaxHeight, mLineMaxHeight);
         mLineMidHeight = typedArray.getDimension(R.styleable.RulerView_lineMidHeight, mLineMidHeight);
         mLineMinHeight = typedArray.getDimension(R.styleable.RulerView_lineMinHeight, mLineMinHeight);
+        mMiddlePointerWidth = typedArray.getDimension(R.styleable.RulerView_middlePointerWidth, 0);
         mLineColor = typedArray.getColor(R.styleable.RulerView_lineColor, mLineColor);
 
         mTextSize = typedArray.getDimension(R.styleable.RulerView_textSize,  mTextSize);
@@ -117,6 +121,7 @@ public class RulerView extends View {
         mPointerType = typedArray.getInteger(R.styleable.RulerView_pointerType, 0);
         mPointerTop = typedArray.getFloat(R.styleable.RulerView_pointerTop, 0);
         mPointerColor = typedArray.getColor(R.styleable.RulerView_pointerColor, mPointerColor);
+        mBackgroundColor = typedArray.getColor(R.styleable.RulerView_backgroundColor, mBackgroundColor);
 
 
 
@@ -188,7 +193,7 @@ public class RulerView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
+        drawTopAndBottomLine(canvas);
         float left, height;
         String value;
         int alpha = 0;
@@ -201,24 +206,39 @@ public class RulerView extends View {
                 continue;  //  先画默认值在正中间，左右各一半的view。  多余部分暂时不画(也就是从默认值在中间，画旁边左右的刻度线)
             }
 
-            if (i % mPerLineCount == 0) {
-                height = mLineMaxHeight;
-            } else if (i % (mPerLineCount/2) == 0) {
-                height = mLineMidHeight;
-            } else {
-                height = mLineMinHeight;
+            if(mPerLineCount % 10 == 0) {
+                if (i % mPerLineCount == 0) {
+                    height = mLineMaxHeight;
+                } else if (i % (mPerLineCount/2) == 0) {
+                    height = mLineMidHeight;
+                } else {
+                    height = mLineMinHeight;
+                }
+            }else {
+                if (i % mPerLineCount == 0) {
+                    height = mLineMaxHeight;
+                } else {
+                    height = mLineMinHeight;
+                }
             }
+
             if (mAlphaEnable) {
                 scale = 1 - Math.abs(left - srcPointX) / srcPointX;
                 alpha = (int) (255 * scale * scale);
 
                 mLinePaint.setAlpha(alpha);
+                if(scale < 0.5) {
+                    scale = 0.5f;
+                }
+                mTextPaint.setTextSize(mTextSize*scale);
+                if(scale == 1) {
+                    mTextPaint.setColor(getResources().getColor(R.color.blue));
+                }else {
+                    mTextPaint.setColor(mTextColor);
+                }
             }
-            if(mPointerType == 0) {
-                canvas.drawLine(left, 0, left, height, mLinePaint);
-            }else if(mPointerType == 1) {
-                canvas.drawLine(left, 20, left, height + 10, mLinePaint);
-            }
+
+            canvas.drawLine(left, 20, left, height + 10, mLinePaint);
 
 
             if (i % mPerLineCount == 0) {
@@ -235,6 +255,31 @@ public class RulerView extends View {
         drawMiddleLine(canvas);
     }
 
+    /**
+     * 绘制顶部和底部的线条
+     * @param canvas
+     */
+    private void drawTopAndBottomLine(Canvas canvas) {
+        // 画笔
+        Paint paint = new Paint();
+        // 抗锯齿
+        paint.setAntiAlias(true);
+        // 设定是否使用图像抖动处理，会使绘制出来的图片颜色更加平滑和饱满，图像更加清晰
+        paint.setDither(true);
+        paint.setColor(Color.GRAY);
+        LinearGradient backGradient = new LinearGradient(40, (mHeight -20)/2, mWidth-40, (mHeight -20)/2, new int[]{Color.TRANSPARENT, mBackgroundColor ,Color.TRANSPARENT}, null, Shader.TileMode.MIRROR);
+        paint.setShader(backGradient);
+
+        canvas.drawRect(0, 20, mWidth, mHeight - 20, paint);
+
+        canvas.drawLine(0, 20, mWidth, 20, paint);
+        canvas.drawLine(0, mHeight - 20, mWidth, mHeight - 20, paint);
+    }
+
+    /**
+     * 绘制中间标尺
+     * @param canvas
+     */
     private void drawMiddleLine(Canvas canvas) {
         // 画笔
         Paint paint = new Paint();
@@ -242,11 +287,13 @@ public class RulerView extends View {
         paint.setAntiAlias(true);
         // 设定是否使用图像抖动处理，会使绘制出来的图片颜色更加平滑和饱满，图像更加清晰
         paint.setDither(true);
-        paint.setStrokeWidth(mLineWidth);
+        paint.setStrokeWidth(mMiddlePointerWidth);
         paint.setColor(mPointerColor);
 
         if(mPointerType == 0) {
-            canvas.drawLine(mWidth/2, 0, mWidth/2, mLineMaxHeight + 10, paint);
+            canvas.drawLine(mWidth/2, mMiddlePointerWidth/2, mWidth/2, mLineMaxHeight + 10, paint);
+            canvas.drawCircle(mWidth/2, mMiddlePointerWidth/2, mMiddlePointerWidth/2, paint);
+            canvas.drawCircle(mWidth/2, mLineMaxHeight + 10, mMiddlePointerWidth/2, paint);
         }else if(mPointerType == 1) {
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), mMiddlePointer);
             Rect scanRect = new Rect(mWidth/2-10, 0, mWidth/2+10, (int) (mLineMaxHeight+15));

@@ -55,6 +55,7 @@
         <attr name="lineMinHeight" format="dimension" />
         <attr name="textMarginTop" format="dimension" />
         <attr name="alphaEnable" format="boolean" />
+        <attr name="backgroundColor" format="color"/>
         <attr name="minValue" format="float"/>
         <attr name="maxValue" format="float"/>
         <attr name="selectorValue" format="float"/>
@@ -66,6 +67,7 @@
         </attr>
         <!--当type=1时-->
         <attr name="middlePointer" format="reference"/>
+        <attr name="middlePointerWidth" format="dimension"/>
         <attr name="pointerTop" format="float"/>
         <!--当type=0时-->
         <attr name="pointerColor" format="color"/>

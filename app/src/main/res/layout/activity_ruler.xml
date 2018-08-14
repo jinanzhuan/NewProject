@@ -8,17 +8,22 @@
     <com.test.newproject.view.RulerView
         android:id="@+id/rv_year"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="75dp"
         android:layout_marginTop="20dp"
         app:alphaEnable="true"
         app:lineColor="@color/blue_dark"
-        app:lineMaxHeight="40dp"
-        app:lineMidHeight="30dp"
-        app:lineMinHeight="20dp"
-        app:lineSpaceWidth="30dp"
+        app:lineMaxHeight="20dp"
+        app:lineMidHeight="15dp"
+        app:lineMinHeight="10dp"
+        app:lineSpaceWidth="10dp"
         app:lineWidth="1dip"
-        app:pointerType="pointer"
+        app:pointerType="line"
+        app:middlePointerWidth="5dp"
+        app:pointerColor="@color/blue"
         app:textColor="@color/black"
-        app:perLineCount="1"/>
+        app:backgroundColor="@color/blue_light"
+        app:textMarginTop="16dp"
+        app:textSize="19sp"
+        app:perLineCount="5"/>
 
 </LinearLayout>
