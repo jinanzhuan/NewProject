@@ -6,4 +6,5 @@
     <dimen name="calendar_size_small">100dp</dimen>
     <dimen name="tile_size_medium">32dp</dimen>
     <dimen name="tile_size_small">16dp</dimen>
+    <dimen name="hands_bottom_margin">-40.0dip</dimen>
 </resources>

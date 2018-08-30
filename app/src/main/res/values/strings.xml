@@ -31,4 +31,25 @@
         <item>Nov</item>
         <item>DEC</item>
     </string-array>
+
+    <string name="ecg_real_time_text_1"> </string>
+    <string name="ecg_real_time_text_2">Speak out loud any symptoms you are feeling.</string>
+    <string name="ecg_real_time_turn_off_voice"> </string>
+    <string name="ecg_real_time_turn_on_voice"> </string>
+    <string name="explanation_grant_permission">Grant Permission</string>
+    <string name="zero_time">00:00</string>
+    <string name="no_heartrate">---</string>
+    <string name="bpm">bpm</string>
+    <string name="muscle_filter">Muscle Filter</string>
+    <string name="pref_name_ac_mains_filter">AC Mains Filter</string>
+    <string name="mains_filter">Mains Filter</string>
+    <string name="baseline_filter">Baseline Filter</string>
+    <string name="enhanced_filter">Enhanced Filter</string>
+    <string name="desc_enhanced_filter">Enhanced Filter is Enabled</string>
+    <string name="ecg_limited_reached">&lt;medium>Sign in to record more ECGs&lt;/medium>&lt;br />&lt;small>ECG limit reached&lt;/small></string>
+    <string name="desc_notice">Notice</string>
+    <string name="transcription_voice_prompt_1"> </string>
+    <string name="transcription_voice_prompt_2"> </string>
+    <string name="otc_title_record_ecg">Record ECG</string>
+    <string name="record_ecg">Record ECG</string>
 </resources>
