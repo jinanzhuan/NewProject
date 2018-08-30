@@ -21,7 +21,9 @@
         app:middlePointerWidth="5dp"
         app:pointerColor="@color/blue"
         app:textColor="@color/black"
-        app:backgroundColor="@color/blue_light"
+        app:startBackgroundColor="@color/white"
+        app:endBackgroundColor="@color/white"
+        app:backgroundColor="#f8fafb"
         app:textMarginTop="16dp"
         app:textSize="19sp"
         app:perLineCount="5"/>

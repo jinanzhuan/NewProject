@@ -35,6 +35,9 @@
         <activity android:name=".activity.BasicActivityDecorated"/>
         <activity android:name=".activity.DoubleWaveActivity"/>
         <activity android:name=".activity.RulerActivity"/>
+        <activity android:name=".activity.TestActivity"/>
+        <activity android:name=".activity.ObjectAnimationActivity"/>
+        <activity android:name=".activity.KardiaActivity"/>
     </application>
 
 </manifest>

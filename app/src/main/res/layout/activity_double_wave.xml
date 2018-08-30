@@ -5,25 +5,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-    <com.test.newproject.view.WaveViewBySinCos
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        app:showDoubleWave="true"
-        app:waveAmplitude="15dp"
-        app:wave2Amplitude="15dp"
-        app:waveFillType="top"
-        app:waveSpeed="2.5"
-        app:wave2Speed="1.5"
-        app:waveStart="true"
-        app:waveStartPeriod="1"
-        app:wave2StartPeriod="1.5"
-        app:waveType="sin"
-        app:waveColor="#aa78BFF5"
-        app:wave2Color="#aa78BFF5"/>
+        android:layout_height="wrap_content"
+        android:background="@color/white">
 
-    <com.test.newproject.view.WaveViewByBezier
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="200dp"/>
+        <com.test.newproject.view.WaveViewBySinCos
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            app:showDoubleWave="true"
+            app:waveAmplitude="15dp"
+            app:wave2Amplitude="10dp"
+            app:waveFillType="top"
+            app:waveSpeed="-2.5"
+            app:wave2Speed="-0.8"
+            app:waveStart="true"
+            app:waveStartPeriod="1"
+            app:wave2StartPeriod="1.5"
+            app:waveType="sin"
+            app:waveColor="#aa78BFF5"
+            app:wave2Color="#aa78BFF5"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

@@ -33,7 +33,7 @@ public class RulerView extends View {
     private float mMaxValue = 200;        // 最大数值
     private float mMinValue = 100.0f;     //最小的数值
     private float mPerValue = 1;          //最小单位  如 1:表示 每2条刻度差为1.   0.1:表示 每2条刻度差为0.1
-                                          // 在demo中 身高mPerValue为1  体重mPerValue 为0.1
+    // 在demo中 身高mPerValue为1  体重mPerValue 为0.1
 
     private float mLineSpaceWidth = 5;    //  尺子刻度2条线之间的距离
     private float mLineWidth = 4;         //  尺子刻度的宽度
@@ -66,7 +66,9 @@ public class RulerView extends View {
     private int mLineColor = Color.GRAY;   //刻度的颜色
     private int mTextColor=Color.BLACK;    //文字的颜色
     private int mPointerColor = Color.RED;    //中间标尺的颜色
-    private int mBackgroundColor = Color.WHITE;    //背景渐变色颜色
+    private int mBackgroundColor = Color.WHITE;    //背景渐变色颜色（中间颜色）
+    private int mStartBackgroundColor = Color.WHITE; //背景色渐变色开始颜色
+    private int mEndBackgroundColor = Color.WHITE; //背景色渐变色开始颜色
 
 
     public RulerView(Context context) {
@@ -122,6 +124,8 @@ public class RulerView extends View {
         mPointerTop = typedArray.getFloat(R.styleable.RulerView_pointerTop, 0);
         mPointerColor = typedArray.getColor(R.styleable.RulerView_pointerColor, mPointerColor);
         mBackgroundColor = typedArray.getColor(R.styleable.RulerView_backgroundColor, mBackgroundColor);
+        mStartBackgroundColor = typedArray.getColor(R.styleable.RulerView_startBackgroundColor, mStartBackgroundColor);
+        mEndBackgroundColor = typedArray.getColor(R.styleable.RulerView_endBackgroundColor, mEndBackgroundColor);
 
 
 
@@ -171,7 +175,7 @@ public class RulerView extends View {
         mMaxOffset = (int) (-(mTotalLine - 1) * mLineSpaceWidth);
         mOffset = (mMinValue - mSelectorValue) / mPerValue * mLineSpaceWidth;
         Log.d("zkk===","mOffset--           "+mOffset  +"         =====mMaxOffset    "+mMaxOffset
-        +"  mTotalLine  " +mTotalLine);
+                +"  mTotalLine  " +mTotalLine);
         invalidate();
         setVisibility(VISIBLE);
     }
@@ -193,6 +197,7 @@ public class RulerView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        canvas.drawColor(Color.TRANSPARENT);
         drawTopAndBottomLine(canvas);
         float left, height;
         String value;
@@ -266,14 +271,20 @@ public class RulerView extends View {
         paint.setAntiAlias(true);
         // 设定是否使用图像抖动处理，会使绘制出来的图片颜色更加平滑和饱满，图像更加清晰
         paint.setDither(true);
-        paint.setColor(Color.GRAY);
-        LinearGradient backGradient = new LinearGradient(40, (mHeight -20)/2, mWidth-40, (mHeight -20)/2, new int[]{Color.TRANSPARENT, mBackgroundColor ,Color.TRANSPARENT}, null, Shader.TileMode.MIRROR);
+        LinearGradient backGradient = new LinearGradient(40, (mHeight -20)/2, mWidth-40, (mHeight -20)/2, new int[]{mStartBackgroundColor, mBackgroundColor , mEndBackgroundColor}, null, Shader.TileMode.CLAMP);
         paint.setShader(backGradient);
 
         canvas.drawRect(0, 20, mWidth, mHeight - 20, paint);
 
-        canvas.drawLine(0, 20, mWidth, 20, paint);
-        canvas.drawLine(0, mHeight - 20, mWidth, mHeight - 20, paint);
+
+        Paint linePaint = new Paint();
+        linePaint.setAntiAlias(true);
+        linePaint.setDither(true);
+        LinearGradient lineGradient = new LinearGradient(40, (mHeight -20)/2, mWidth-40, (mHeight -20)/2, new int[]{mStartBackgroundColor, Color.parseColor("#c7c7c7") ,mEndBackgroundColor}, null, Shader.TileMode.CLAMP);
+        linePaint.setShader(lineGradient);
+
+        canvas.drawLine(0, 20, mWidth, 20, linePaint);
+        canvas.drawLine(0, mHeight - 20, mWidth, mHeight - 20, linePaint);
     }
 
     /**

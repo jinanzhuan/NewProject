@@ -41,5 +41,7 @@ public class RulerActivity extends BaseActivity {
         super.initData();
         int i = Calendar.getInstance().get(Calendar.YEAR);
         mRvYear.setValue(160, 100, 220, 1);
+
     }
+
 }
