@@ -32,7 +32,7 @@
         <item>DEC</item>
     </string-array>
 
-    <string name="ecg_real_time_text_1"> </string>
+    <string name="ecg_real_time_text_1">Place your fingertips on electrodes to start ECG recording.</string>
     <string name="ecg_real_time_text_2">Speak out loud any symptoms you are feeling.</string>
     <string name="ecg_real_time_turn_off_voice"> </string>
     <string name="ecg_real_time_turn_on_voice"> </string>

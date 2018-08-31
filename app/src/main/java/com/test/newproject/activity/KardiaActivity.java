@@ -41,6 +41,9 @@ public class KardiaActivity extends BaseActivity {
     @Override
     public void initView() {
         super.initView();
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportFragmentManager().beginTransaction().replace(R.id.fl_fragment, new KardiaFragment()).commit();
     }
 }
