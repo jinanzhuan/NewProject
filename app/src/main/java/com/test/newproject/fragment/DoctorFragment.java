@@ -1,19 +1,16 @@
 package com.test.newproject.fragment;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.test.newproject.R;
 import com.test.newproject.activity.CalendarIndexActivity;
 import com.test.newproject.activity.DoubleWaveActivity;
+import com.test.newproject.activity.PathActivity;
 import com.test.newproject.activity.ProgressActivity;
 import com.test.newproject.activity.RulerActivity;
 import com.test.newproject.base.BaseFragment;
 
-import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 /**
@@ -35,6 +32,8 @@ public class DoctorFragment extends BaseFragment implements View.OnClickListener
     Button mBtnWave;
     @InjectView(R.id.btn_ruler)
     Button mBtnRuler;
+    @InjectView(R.id.btn_path)
+    Button mBtnPath;
 
     @Override
     public int getLayoutId() {
@@ -48,6 +47,7 @@ public class DoctorFragment extends BaseFragment implements View.OnClickListener
         mBtnCalendar.setOnClickListener(this);
         mBtnWave.setOnClickListener(this);
         mBtnRuler.setOnClickListener(this);
+        mBtnPath.setOnClickListener(this);
     }
 
     @Override
@@ -65,20 +65,10 @@ public class DoctorFragment extends BaseFragment implements View.OnClickListener
             case R.id.btn_ruler:
                 RulerActivity.actionStart(mContext);
                 break;
+            case R.id.btn_path:
+                PathActivity.actionStart(mContext);
+                break;
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.inject(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.reset(this);
-    }
 }

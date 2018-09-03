@@ -38,6 +38,7 @@
         <activity android:name=".activity.TestActivity"/>
         <activity android:name=".activity.ObjectAnimationActivity"/>
         <activity android:name=".activity.KardiaActivity"/>
+        <activity android:name=".activity.PathActivity"/>
     </application>
 
 </manifest>
