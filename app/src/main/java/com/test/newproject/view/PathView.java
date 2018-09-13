@@ -40,7 +40,7 @@ public class PathView extends View {
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setColor(Color.BLACK);
         mPaint.setAntiAlias(true);
-        mPaint.setStrokeWidth(10);
+        mPaint.setStrokeWidth(1);
     }
 
     @Override
@@ -55,13 +55,38 @@ public class PathView extends View {
         super.onDraw(canvas);
         canvas.translate(mWidth/2, mHeight/2);
         Path path = new Path();
-        path.lineTo(200, 200);
-//        path.moveTo(200, 100);
-//        path.setLastPoint(200, 100);
-        path.lineTo(200, 0);
-        path.close();
 
-//        canvas.drawPoint(200, 200, mPaint);
+        //========lineTo==========
+
+        //path.lineTo(200, 200);
+        //path.lineTo(200, 0);
+
+        //=========moveTo==========
+
+        //path.lineTo(200, 200);
+        //path.moveTo(200, 100);
+        //path.lineTo(200, 0);
+
+
+        //=========setLastPoint==========
+
+        //path.lineTo(200, 200);
+        //path.setLastPoint(200, 100);
+        //path.lineTo(200, 0);
+        //canvas.drawPoint(200, 200, mPaint);
+
+        //===========close============
+
+        //path.lineTo(200, 200);
+        //path.lineTo(200, 0);
+        //path.close();
+
+        //===========addRect===========
+
+        path.addRect(-200,-200,200,200, Path.Direction.CCW);
+
+        path.setLastPoint(-300,300);
+
 
         canvas.drawPath(path, mPaint);
     }

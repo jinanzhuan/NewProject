@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="holo_red_dark">#ffcc0000</color>
+    <color name="holo_green_dark">#ff669900</color>
 
     <color name="white">#ffffff</color>
     <color name="blue_bg">#336699</color>

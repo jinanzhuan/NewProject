@@ -78,8 +78,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10.0dip"
             android:text="@string/ecg_real_time_turn_off_voice"
-            android:textColor="#ff0072bc"
-            android:visibility="gone"/>
+            android:textColor="#ff0072bc"/>
 
         <FrameLayout
             android:layout_width="wrap_content"

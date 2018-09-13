@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 
     <application
         android:allowBackup="true"
@@ -37,7 +38,7 @@
         <activity android:name=".activity.RulerActivity"/>
         <activity android:name=".activity.TestActivity"/>
         <activity android:name=".activity.ObjectAnimationActivity"/>
-        <activity android:name=".activity.KardiaActivity"/>
+        <activity android:name=".activity.KardiaActivity" android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity android:name=".activity.PathActivity"/>
     </application>
 
