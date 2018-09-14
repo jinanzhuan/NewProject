@@ -14,6 +14,8 @@ import android.content.pm.PackageInfo;
 
 public class j {
 
+    private volatile boolean K;
+
     public j(PackageInfo info){
 
     }
@@ -24,5 +26,10 @@ public class j {
 
     public int f() {
         return 0;
+    }
+
+    static boolean a(j arg0, boolean arg1) {
+        arg0.K = arg1;
+        return arg1;
     }
 }
