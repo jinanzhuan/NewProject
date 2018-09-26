@@ -7,6 +7,7 @@ import com.test.newproject.ClickActivity;
 import com.test.newproject.PermissionActivity;
 import com.test.newproject.R;
 import com.test.newproject.activity.AlarmClockActivity;
+import com.test.newproject.activity.ScannerActivity;
 import com.test.newproject.base.BaseFragment;
 
 import butterknife.InjectView;
@@ -28,6 +29,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     Button mBtnPermission;
     @InjectView(R.id.btn_alarm)
     Button mBtnAlarm;
+    @InjectView(R.id.btn_finish)
+    Button mBtnFinish;
 
     @Override
     public int getLayoutId() {
@@ -45,6 +48,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         mBtnClickResult.setOnClickListener(this);
         mBtnPermission.setOnClickListener(this);
         mBtnAlarm.setOnClickListener(this);
+        mBtnFinish.setOnClickListener(this);
     }
 
     @Override
@@ -59,6 +63,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             case R.id.btn_alarm:
                 AlarmClockActivity.actionStart(mContext);
                 break;
+            case R.id.btn_finish:
+                ScannerActivity.actionStart(mContext);
+                break;
         }
     }
+
 }

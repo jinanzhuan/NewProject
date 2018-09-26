@@ -6,7 +6,7 @@ import android.support.annotation.WorkerThread;
  * <pre>
  *     author : created by ljn
  *     e-mail : liujinan@edreamtree.com
- *     time   : 2018/9/13
+ *     time   : 2018/9/25
  *     desc   :
  *     modify :
  * </pre>
@@ -17,12 +17,12 @@ public interface q {
 
     void a(int arg1);
 
+    void a(int arg1, boolean arg2);
+
     @WorkerThread
     void a(short[] arg1, int arg2, int arg3);
 
     long a(f arg1);
-
-    void a(int arg1, boolean arg2);
 
     @WorkerThread void a(long arg1);
 

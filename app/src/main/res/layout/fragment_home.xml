@@ -28,4 +28,10 @@
         android:layout_height="wrap_content"
         android:text="闹钟"/>
 
+    <Button
+        android:id="@+id/btn_finish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="finish"/>
+
 </LinearLayout>

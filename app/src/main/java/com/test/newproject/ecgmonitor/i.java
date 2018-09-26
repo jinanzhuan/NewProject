@@ -10,16 +10,6 @@ package com.test.newproject.ecgmonitor;
  * </pre>
  */
 
-public class k implements Runnable {
-    private j a;
-
-    k(j arg1) {
-        super();
-        this.a = arg1;
-    }
-
-    @Override
-    public void run() {
-
-    }
+public interface i {
+    void a(boolean arg1);
 }

@@ -4,8 +4,11 @@ import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -16,6 +19,7 @@ import android.widget.TextView;
 
 import com.test.newproject.R;
 import com.test.newproject.base.BaseFragment;
+import com.test.newproject.ecgmonitor.EcgRealTimeView;
 import com.test.newproject.ecgmonitor.f;
 import com.test.newproject.ecgmonitor.j;
 import com.test.newproject.ecgmonitor.q;
@@ -24,6 +28,7 @@ import com.yanzhenjie.permission.PermissionListener;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 
@@ -96,6 +101,10 @@ public class KardiaFragment extends BaseFragment implements View.OnClickListener
     ImageView mImageHands;
     @InjectView(R.id.record_ecg_btn)
     Button mRecordEcgBtn;
+    @InjectView(R.id.btn_test)
+    Button mBtnTest;
+    @InjectView(R.id.view_ecgrealtime)
+    EcgRealTimeView mViewEcgrealtime;
 
     private boolean mIsClose;
     private j x;
@@ -108,7 +117,7 @@ public class KardiaFragment extends BaseFragment implements View.OnClickListener
     @Override
     public void initView() {
         super.initView();
-        
+
     }
 
     @Override
@@ -116,15 +125,16 @@ public class KardiaFragment extends BaseFragment implements View.OnClickListener
         super.initListener();
         mVoiceSettingsLink.setOnClickListener(this);
         mBtnGrantPermission.setOnClickListener(this);
+        mBtnTest.setOnClickListener(this);
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         if (this.getView() != null && mImageHands != null) {
-            if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 mImageHands.setVisibility(View.GONE);
-            }else {
+            } else {
                 mImageHands.setVisibility(View.VISIBLE);
             }
         }
@@ -133,14 +143,14 @@ public class KardiaFragment extends BaseFragment implements View.OnClickListener
     @Override
     public void onResume() {
         super.onResume();
-        if(this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             mImageHands.setVisibility(View.GONE);
-        }else {
+        } else {
             mImageHands.setVisibility(View.VISIBLE);
         }
-        if(PermissionUtils.hasPermission(mContext, Manifest.permission.RECORD_AUDIO)) {
+        if (PermissionUtils.hasPermission(mContext, Manifest.permission.RECORD_AUDIO)) {
             mBtnGrantPermission.setVisibility(View.GONE);
-        }else {
+        } else {
             mBtnGrantPermission.setVisibility(View.VISIBLE);
         }
     }
@@ -148,11 +158,14 @@ public class KardiaFragment extends BaseFragment implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.voice_settings_link :
+            case R.id.voice_settings_link:
                 changeRecordingState(!mIsClose);
                 break;
             case R.id.btn_grant_permission:
                 requestPermission();
+                break;
+            case R.id.btn_test:
+                mViewEcgrealtime.a(20);
                 break;
         }
     }
@@ -169,13 +182,13 @@ public class KardiaFragment extends BaseFragment implements View.OnClickListener
     }
 
     private void switchRecordState() {
-        if(!mIsClose) {
+        if (!mIsClose) {
             mVoiceSettingsLink.setText(getResources().getString(R.string.ecg_real_time_turn_off_voice));
             mInstructionsStep1Img.setVisibility(View.VISIBLE);
             mNewBadge.setVisibility(View.VISIBLE);
             mInstructionsStep2Img.setVisibility(View.VISIBLE);
             mInstructionsStep2Txt.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             mVoiceSettingsLink.setText(getResources().getString(R.string.ecg_real_time_turn_on_voice));
             mInstructionsStep1Img.setVisibility(View.GONE);
             mNewBadge.setVisibility(View.GONE);
@@ -219,11 +232,11 @@ public class KardiaFragment extends BaseFragment implements View.OnClickListener
         int v0 = arg7 / 3600;
         int v1 = (arg7 - v0 * 3600) / 60;
         mLblElapsedtime.setText(this.getString(R.string.fmt_hr_min_2_digit, new Object[]{Integer.valueOf(v1), Integer.valueOf(arg7 - v1 * 60 - v0 * 3600)}));
-        if(this.x.e() > 0) {
+        if (this.x.e() > 0) {
             mPbarRec.setProgress(arg7 * 100 / this.x.e());
         }
 
-        if(arg7 >= this.x.f()) {
+        if (arg7 >= this.x.f()) {
             mLblElapsedtime.setCompoundDrawablesWithIntrinsicBounds(R.drawable.greendot, 0, 0, 0);
         }
     }
@@ -272,5 +285,19 @@ public class KardiaFragment extends BaseFragment implements View.OnClickListener
                 PermissionUtils.FailedForPermissions(KardiaFragment.this, requestCode, deniedPermissions, "测心电需要打开麦克风");
             }
         });
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.inject(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.reset(this);
     }
 }

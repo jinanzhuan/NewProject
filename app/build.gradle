@@ -30,4 +30,5 @@ dependencies {
     compile 'com.jakewharton:butterknife:5.1.1'
     compile 'com.yanzhenjie:permission:1.0.5'
     compile project(':library')
+    compile 'cn.bingoogolapple:bga-qrcode-zxing:1.2.5'
 }

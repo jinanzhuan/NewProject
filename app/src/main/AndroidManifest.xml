@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -40,6 +41,8 @@
         <activity android:name=".activity.ObjectAnimationActivity"/>
         <activity android:name=".activity.KardiaActivity" android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity android:name=".activity.PathActivity"/>
+        <activity android:name=".activity.ScannerActivity"/>
+        <activity android:name=".activity.ZXingActivity"/>
     </application>
 
 </manifest>
