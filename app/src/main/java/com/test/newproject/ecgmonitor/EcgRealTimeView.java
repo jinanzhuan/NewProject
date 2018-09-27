@@ -39,7 +39,7 @@ public class EcgRealTimeView extends View {
     private float o;
     private int p;
     private int q;
-    private DisplayMetrics r;
+    private DisplayMetrics displayMetrics;
     private float s;
     private float t;
 
@@ -65,7 +65,7 @@ public class EcgRealTimeView extends View {
         this.dividePaint.setStrokeJoin(Paint.Join.ROUND);
         this.dividePaint.setStyle(Paint.Style.STROKE);
         this.setLayerType(1, null);
-        this.r = new DisplayMetrics();
+        this.displayMetrics = new DisplayMetrics();
     }
 
     public void a() {
@@ -187,25 +187,25 @@ public class EcgRealTimeView extends View {
     }
 
     @Override
-    protected void onSizeChanged(int arg5, int arg6, int arg7, int arg8) {
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         WindowManager manager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
-        manager.getDefaultDisplay().getMetrics(this.r);
-        this.s = this.r.xdpi / 2.54f * 1f;
-        this.t = this.r.ydpi / 2.54f * 1f;
+        manager.getDefaultDisplay().getMetrics(this.displayMetrics);
+        this.s = this.displayMetrics.xdpi / 2.54f * 1f;
+        this.t = this.displayMetrics.ydpi / 2.54f * 1f;
         this.t = this.s;
         this.n = 2.5f * this.s / 300f;
         this.o = this.t / 2000f;
-        this.m = (((float)arg6)) * 0.5f;
-        this.p = arg5;
-        this.q = arg6;
-        this.l = ((int)((((float)arg5)) / this.n));
+        this.m = (((float)h)) * 0.5f;
+        this.p = w;
+        this.q = h;
+        this.l = ((int)(((float)w) / this.n));
         if(this.h) {
             int v0 = this.l + 12;
             this.i.a(v0);
             this.j.a(v0 * 300 / 18000);
         }
 
-        super.onSizeChanged(arg5, arg6, arg7, arg8);
+        super.onSizeChanged(w, h, oldw, oldh);
     }
 
     @Override
